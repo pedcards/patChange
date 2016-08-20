@@ -1,21 +1,26 @@
 <?php
-
+$file = '../patlist/change.xml';
+//$file = 'change.xml';
 $do = \filter_input(\INPUT_GET, 'do');
 if ($do!=='sync') {
     echo 'Error';
     exit;
 }
-if (file_exists('change.xml')) {
-    $xml = simplexml_load_file('change.xml');
+if (file_exists($file)) {
+    $xml = simplexml_load_file($file);
+    echo 'Loaded';
 } else {
+    $xml = new SimpleXMLElement('<root/>');
+    $xml->asXML($file);
     echo 'NONE';
     exit;
-    
-    $xml = new SimpleXMLElement('<root/>');
-    $xml->asXML("change.xml");
 }
 $timenow = date("YmdHis");
-$user = htmlentities($_SERVER['REMOTE_USER']);
-$refer = htmlentities($_SERVER['HTTP_REFERER']);
-//file_put_contents("change".$timenow, $timenow.':'.$user.':'.$refer.':'.$do);
 
+$node = $xml[0]->addChild('node');
+$node[0]->addAttribute('date', $timenow);
+$node[0]->addChild('child');
+
+$xml->asXML($file);
+
+echo $xml->asXML();
