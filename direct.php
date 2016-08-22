@@ -1,26 +1,36 @@
 <?php
-$file = '../patlist/change.xml';
-//$file = 'change.xml';
-$do = \filter_input(\INPUT_GET, 'do');
-if ($do!=='sync') {
-    echo 'Error';
-    exit;
-}
-if (file_exists($file)) {
-    $xml = simplexml_load_file($file);
-    echo 'Loaded';
-} else {
-    $xml = new SimpleXMLElement('<root/>');
-    $xml->asXML($file);
-    echo 'NONE';
-    exit;
-}
 $timenow = date("YmdHis");
-
-$node = $xml[0]->addChild('node');
-$node[0]->addAttribute('date', $timenow);
-$node[0]->addChild('child');
-
-$xml->asXML($file);
-
-echo $xml->asXML();
+//$file = '../patlist/change.xml';
+$file = 'change.xml';
+$do = \filter_input(\INPUT_GET, 'do');
+if ($do=='root') {
+    $xml = new DOMDocument();
+    $ele = $xml->createElement('root');
+    $xml->appendChild($ele);
+    $xml->save($file);
+    echo 'root';
+    exit;
+}
+if ($do=='save') {
+    // Need for a currlock?
+    unlink($file);
+    echo 'unlink';
+    exit;
+}
+if ($do=='get') {
+    if (!file_exists($file)) {
+        echo 'NONE';
+        exit;
+    }
+    // need decryption?
+    $xml = new DOMDocument();
+    $xml->preserveWhiteSpace = false;
+    $xml->formatOutput = true;
+    $xml->load($file);
+    $out = $xml->saveXML();
+    echo $out;
+    exit;
+} 
+else {
+    echo 'NULL';
+}
