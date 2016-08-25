@@ -26,7 +26,7 @@ if ($do=='get') {
     $xml->preserveWhiteSpace = false;
     $xml->formatOutput = true;
     $xml->load($file);
-    printf ("<pre>%s</pre>", htmlentities ($xml->saveXML()));
+    echo $xml->saveXML();
     exit;
 } 
 else {
