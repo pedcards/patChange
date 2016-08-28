@@ -1,13 +1,21 @@
 <?php
 $timenow = date("YmdHis");
-$file = '../patlist/change.xml';
+$test = \filter_input(\INPUT_GET, 'test');
 $do = \filter_input(\INPUT_GET, 'do');
+$file = '../' . (($test) ? 'test' : 'pat') . 'list/change.xml';
 if ($do=='root') {
-    $xml = new DOMDocument();
-    $ele = $xml->createElement('root');
-    $xml->appendChild($ele);
-    $xml->save($file);
+    $xml = new SimpleXMLElement('<root />');
+    $xml->asXML($file);
     echo 'root';
+    exit;
+}
+if ($do=='add') {
+    $xml = (simplexml_load_file($file)) ?: new SimpleXMLElement('<root />');
+    $node = $xml[0]->addChild('node');
+    $node[0]->addAttribute('id', uniqid());
+    $ele1 = $node[0]->addChild('name',  uniqid());
+    $xml->asXML($file);
+    echo 'add';
     exit;
 }
 if ($do=='unlink') {
