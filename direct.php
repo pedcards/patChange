@@ -2,7 +2,8 @@
 $timenow = date("YmdHis");
 $test = \filter_input(\INPUT_GET, 'test');
 $do = \filter_input(\INPUT_GET, 'do');
-$file = '../' . (($test) ? 'test' : 'pat') . 'list/change.xml';
+$path = '../' . (($test) ? 'test' : 'pat') . 'list/';
+$file = $path . 'change.xml';
 if ($do=='root') {
     $xml = new SimpleXMLElement('<root />');
     $xml->asXML($file);
@@ -42,6 +43,14 @@ if ($do=='get') {
     echo $xml->saveXML();
     exit;
 } 
+if ($do=='full') {
+    $xml = new DOMDocument();
+    $xml->preserveWhiteSpace = false;
+    $xml->formatOutput = true;
+    $xml->load($path . 'currlist.xml');
+    echo $xml->saveXML();
+    exit;
+}
 else {
     echo 'NULL';
 }
