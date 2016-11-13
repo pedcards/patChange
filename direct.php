@@ -52,8 +52,11 @@ if ($do=='full') {
     echo $xml->saveXML();
     exit;
 }
-if ($do=='err999') {
-    // bad error: all currlists failed
+if ($do=='err200') {                // filesize exceeding 500kb, something is wrong
+    pov($sysop,'Excess filesize error');
+    exit;
+}
+if ($do=='err999') {                // bad error: all currlists failed
     pov($sysop,'EPIC FAIL');
     exit;
 }
