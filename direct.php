@@ -66,6 +66,31 @@ if ($do=='log') {
     echo nl2br($log);
     exit;
 }
+if ($do=='trreat') {
+    $docs = array(
+        "JS"=>"jack.salerno",
+        "SS"=>"stephen.seslar",
+        "TC"=>"terrence.chun"
+    );
+    $usr = \filter_input(\INPUT_GET, 'to');
+    $eml = $docs[$usr].'@seattlechildrens.org';
+    require './lib/PHPMailerAutoload.php';
+    $mail = new PHPMailer;
+    $mail->isSendmail();
+    $mail->setFrom('jennifer.keylon@seattlechildrens.org', 'Pacemaker Clinic');
+    $mail->addAddress($eml);
+    $mail->Subject = 'New pacemaker report(s) to sign';
+    //$mail->isHTML(true);
+    $mail->Body    = 'There is/are one or more pacemaker reports available for you to review/sign. '
+                    .'The TRREAT program can be launched here: "\\\\childrens\files\HCCardiologyFiles\EP\TRREAT_files\TRREAT.exe"';
+    if (!$mail->send()) {                                                       // email error.
+        echo 'SEND ERROR';
+        exit;
+    } else {
+        echo 'SENT';
+        exit;
+    }
+}
 else {
     echo 'NULL';
 }
