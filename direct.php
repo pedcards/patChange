@@ -91,6 +91,26 @@ if ($do=='trreat') {
         exit;
     }
 }
+if ($do=='chili') {
+    $usr = \filter_input(\INPUT_GET, 'to');
+    $eml = $usr.'@seattlechildrens.org';
+    require './lib/PHPMailerAutoload.php';
+    $mail = new PHPMailer;
+    $mail->isSendmail();
+    $mail->setFrom('pedcards@uw.edu', 'CHIPOTLE');
+    $mail->addAddress($eml);
+    $mail->Subject = 'CHIPOTLE reminder';
+    //$mail->isHTML(true);
+    $mail->Body    = 'This is a gentle reminder to contact referring cardiologists using the "Call List" function in CHIPOTLE. '
+                    .'The CHIPOTLE program can be launched here: "\\\\childrens\files\HCChipotle\chipotle.exe"';
+    if (!$mail->send()) {                                                       // email error.
+        echo 'SEND ERROR';
+        exit;
+    } else {
+        echo 'SENT';
+        exit;
+    }
+}
 else {
     echo 'NULL';
 }
