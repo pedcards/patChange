@@ -91,7 +91,7 @@ if ($do=='trreat') {
         exit;
     }
 }
-if ($do=='chili') {
+if ($do=='remind') {
     $usr = \filter_input(\INPUT_GET, 'to');
     $eml = $usr.'@seattlechildrens.org';
     require './lib/PHPMailerAutoload.php';
