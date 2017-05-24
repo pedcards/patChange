@@ -102,7 +102,7 @@ if ($do=='remind') {
     $mail->Subject = 'CHIPOTLE reminder';
     //$mail->isHTML(true);
     $mail->Body    = 'This is a gentle reminder to contact referring cardiologists using the "Call List" function in CHIPOTLE. '
-                    .'The CHIPOTLE program can be launched here: "\\\\childrens\files\HCChipotle\chipotle.exe"';
+                    .'Launch the CHIPOTLE program from this link "\\\\childrens\files\HCChipotle\chipotle.exe" to enable email capabilities.';
     if (!$mail->send()) {                                                       // email error.
         echo 'SEND ERROR';
         exit;
