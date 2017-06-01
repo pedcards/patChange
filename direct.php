@@ -101,9 +101,9 @@ if ($do=='remind') {
     $mail->addAddress($eml);
     $mail->Subject = 'CHIPOTLE reminder';
     //$mail->isHTML(true);
-    $mail->Body    = 'This is a gentle reminder to contact referring cardiologists using the "Call List" function in CHIPOTLE. '
-                    .'Launch the CHIPOTLE program from this link "\\\\childrens\files\HCChipotle\chipotle.exe" '
-                    .'or from the Citrix "Cardiology/Chipotle" shortcut to enable email capabilities.';
+    $mail->Body    = 'This is a gentle reminder to contact referring cardiologists using the "Call List" function in CHIPOTLE. '."\r\n\r\n"
+                    .'To enable the email contact features, launch the CHIPOTLE program from this link "\\\\childrens\files\HCChipotle\chipotle.exe" '
+                    .'or from the Citrix "Cardiology/Chipotle" menu shortcut.';
     if (!$mail->send()) {                                                       // email error.
         echo 'SEND ERROR';
         exit;
