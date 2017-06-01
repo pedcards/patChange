@@ -92,8 +92,8 @@ if ($do=='trreat') {
     }
 }
 if ($do=='remind') {
-    $usr = \filter_input(\INPUT_GET, 'to');
-    $eml = $usr.'@seattlechildrens.org';
+    $eml = \filter_input(\INPUT_GET, 'to');
+    //$eml = $usr.'@seattlechildrens.org';
     require './lib/PHPMailerAutoload.php';
     $mail = new PHPMailer;
     $mail->isSendmail();
@@ -102,7 +102,8 @@ if ($do=='remind') {
     $mail->Subject = 'CHIPOTLE reminder';
     //$mail->isHTML(true);
     $mail->Body    = 'This is a gentle reminder to contact referring cardiologists using the "Call List" function in CHIPOTLE. '
-                    .'Launch the CHIPOTLE program from this link "\\\\childrens\files\HCChipotle\chipotle.exe" to enable email capabilities.';
+                    .'Launch the CHIPOTLE program from this link "\\\\childrens\files\HCChipotle\chipotle.exe" '
+                    .'or from the Citrix "Cardiology/Chipotle" shortcut to enable email capabilities.';
     if (!$mail->send()) {                                                       // email error.
         echo 'SEND ERROR';
         exit;
