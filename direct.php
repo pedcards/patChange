@@ -66,7 +66,7 @@ if ($do=='log') {
     echo nl2br($log);
     exit;
 }
-if ($do=='trreat') {
+if ($do=='sign') {
     $docs = array(
         "JS"=>"jack.salerno",
         "SS"=>"stephen.seslar",
@@ -79,10 +79,10 @@ if ($do=='trreat') {
     $mail->isSendmail();
     $mail->setFrom('jennifer.keylon@seattlechildrens.org', 'Pacemaker Clinic');
     $mail->addAddress($eml);
-    $mail->Subject = 'New pacemaker report(s) to sign';
+    $mail->Subject = 'New TRRIQ or TRREAT report(s) to sign';
     //$mail->isHTML(true);
-    $mail->Body    = 'There is/are one or more pacemaker reports available for you to review/sign. '
-                    .'The TRREAT program can be launched here: "\\\\childrens\files\HCCardiologyFiles\EP\TRREAT_files\TRREAT.exe"';
+    $mail->Body    = 'There is/are one or more reports available for you to review/sign. '
+                    .'Check your Epic In-Basket for details."';
     if (!$mail->send()) {                                                       // email error.
         echo 'SEND ERROR';
         exit;
