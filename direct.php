@@ -79,10 +79,35 @@ if ($do=='sign') {
     $mail->isSendmail();
     $mail->setFrom('jennifer.keylon@seattlechildrens.org', 'Pacemaker Clinic');
     $mail->addAddress($eml);
-    $mail->Subject = 'New TRRIQ or TRREAT report(s) to sign';
+    $mail->Subject = 'New TRREAT report(s) to sign';
     //$mail->isHTML(true);
     $mail->Body    = 'There is/are one or more reports available for you to review/sign. '
-                    .'Check your Epic In-Basket for details."';
+                    .'Check your Epic In-Basket for details.';
+    if (!$mail->send()) {                                                       // email error.
+        echo 'SEND ERROR';
+        exit;
+    } else {
+        echo 'SENT';
+        exit;
+    }
+}
+if ($do=='read') {
+    $docs = array(
+        "JS"=>"jack.salerno",
+        "SS"=>"stephen.seslar",
+        "TC"=>"terrence.chun"
+    );
+    $usr = \filter_input(\INPUT_GET, 'to');
+    $eml = $docs[$usr].'@seattlechildrens.org';
+    require './lib/PHPMailerAutoload.php';
+    $mail = new PHPMailer;
+    $mail->isSendmail();
+    $mail->setFrom('jennifer.keylon@seattlechildrens.org', 'Holter Clinic');
+    $mail->addAddress($eml);
+    $mail->Subject = 'New Holter/Event Monitor to review';
+    //$mail->isHTML(true);
+    $mail->Body    = 'A new Holter/Event Monitor report that you had ordered was recently received and processed. '
+                    .'Launch the Holter Database to review and sign."';
     if (!$mail->send()) {                                                       // email error.
         echo 'SEND ERROR';
         exit;
