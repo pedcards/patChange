@@ -68,6 +68,7 @@ if ($do=='log') {
 }
 if ($do=='sign') {
     $docs = array(
+        "RG"=>"roberto.gallotti",
         "JS"=>"jack.salerno",
         "SS"=>"stephen.seslar",
         "TC"=>"terrence.chun"
@@ -93,6 +94,7 @@ if ($do=='sign') {
 }
 if ($do=='read') {
     $docs = array(
+        "RG"=>"roberto.gallotti",
         "JS"=>"jack.salerno",
         "SS"=>"stephen.seslar",
         "TC"=>"terrence.chun"
