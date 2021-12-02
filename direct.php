@@ -75,8 +75,8 @@ if ($do=='sign') {
     );
     $usr = \filter_input(\INPUT_GET, 'to');
     $eml = $docs[$usr].'@seattlechildrens.org';
-    require './lib/PHPMailerAutoload.php';
-    $mail = new PHPMailer;
+    require './lib/PHPMailer.php';
+    $mail = new PHPMailer();
     $mail->isSendmail();
     $mail->setFrom('jennifer.keylon@seattlechildrens.org', 'Pacemaker Clinic');
     $mail->addAddress($eml);
@@ -101,8 +101,8 @@ if ($do=='read') {
     );
     $usr = \filter_input(\INPUT_GET, 'to');
     $eml = $docs[$usr].'@seattlechildrens.org';
-    require './lib/PHPMailerAutoload.php';
-    $mail = new PHPMailer;
+    require './lib/PHPMailer.php';
+    $mail = new PHPMailer();
     $mail->isSendmail();
     $mail->setFrom('jennifer.keylon@seattlechildrens.org', 'Holter Clinic');
     $mail->addAddress($eml);
@@ -121,8 +121,8 @@ if ($do=='read') {
 if ($do=='remind') {
     $eml = \filter_input(\INPUT_GET, 'to');
     //$eml = $usr.'@seattlechildrens.org';
-    require './lib/PHPMailerAutoload.php';
-    $mail = new PHPMailer;
+    require './lib/PHPMailer.php';
+    $mail = new PHPMailer();
     $mail->isSendmail();
     $mail->setFrom('pedcards@uw.edu', 'CHIPOTLE');
     $mail->addAddress($eml);
