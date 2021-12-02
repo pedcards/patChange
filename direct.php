@@ -66,6 +66,8 @@ if ($do=='log') {
     echo nl2br($log);
     exit;
 }
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 if ($do=='sign') {
     $docs = array(
         "RG"=>"roberto.gallotti",
