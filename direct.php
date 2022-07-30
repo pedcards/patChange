@@ -111,7 +111,33 @@ if ($do=='read') {
     $mail->Subject = 'New Holter/Event Monitor to review';
     //$mail->isHTML(true);
     $mail->Body    = 'A new Holter/Event Monitor report that you had ordered was recently received and processed. '
-                    .'Launch the Holter Database to review and sign."';
+                    .'Launch the Holter Database to review and sign.';
+    if (!$mail->send()) {                                                       // email error.
+        echo 'SEND ERROR';
+        exit;
+    } else {
+        echo 'SENT';
+        exit;
+    }
+}
+if ($do=='late') {
+    $docs = array(
+        "RG"=>"roberto.gallotti",
+        "JS"=>"jack.salerno",
+        "SS"=>"stephen.seslar",
+        "TC"=>"terrence.chun"
+    );
+    $usr = \filter_input(\INPUT_GET, 'to');
+    $eml = $docs[$usr].'@seattlechildrens.org';
+    require './lib/PHPMailer.php';
+    $mail = new PHPMailer();
+    $mail->isSendmail();
+    $mail->setFrom('jennifer.keylon@seattlechildrens.org', 'Holter Clinic');
+    $mail->addAddress($eml);
+    $mail->Subject = 'LATE: Holter/Event Monitor to review';
+    //$mail->isHTML(true);
+    $mail->Body    = 'There are late Holter/Event Monitor reports that require confirmation. '
+                    .'Launch the Holter Database to review and sign.';
     if (!$mail->send()) {                                                       // email error.
         echo 'SEND ERROR';
         exit;
