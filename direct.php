@@ -90,6 +90,7 @@ if ($do=='sign') {
         "RG"=>"roberto.gallotti",
         "JS"=>"jack.salerno",
         "SS"=>"stephen.seslar",
+        "RD"=>"roshan.d'souza",
         "TC"=>"terrence.chun"
     );
     $usr = \filter_input(\INPUT_GET, 'to');
@@ -116,6 +117,7 @@ if ($do=='read') {
         "RG"=>"roberto.gallotti",
         "JS"=>"jack.salerno",
         "SS"=>"stephen.seslar",
+        "RD"=>"roshan.d'souza",
         "TC"=>"terrence.chun"
     );
     $usr = \filter_input(\INPUT_GET, 'to');
