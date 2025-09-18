@@ -18,6 +18,9 @@ if (getenv('HTTP_CLIENT_IP')) {
     $ipaddress = 'UNKNOWN';
 }
 
+if ($do=='count') {
+    eventlog($msg);
+}
 function eventlog($text) {
     global $logfile, $ipaddress;
     $out = fopen($logfile,'a');
