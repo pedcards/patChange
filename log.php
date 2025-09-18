@@ -21,6 +21,16 @@ if (getenv('HTTP_CLIENT_IP')) {
 if ($do=='count') {
     eventlog($msg);
 }
+if ($do=='show' & $msg=='all'){
+    eventlog('webshow');
+    $log = file_get_contents($logfile);
+    echo "<font size='2' face='Arial'>";
+    echo nl2br($log);
+}
+else {
+    echo 'NULL';
+}
+
 function eventlog($text) {
     global $logfile, $ipaddress;
     $out = fopen($logfile,'a');
