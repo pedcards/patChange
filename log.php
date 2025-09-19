@@ -28,7 +28,10 @@ if ($do=='show' & $msg=='all'){
     echo nl2br($log);
 }
 else {
-    echo 'NULL';
+    header("HTTP/1.0 404 Not Found");
+    echo "<h1>Not Found</h1>";
+    echo "<p>The requested resource does not exist on this server.</p>";
+    exit();
 }
 
 function eventlog($text) {
